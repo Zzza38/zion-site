@@ -44,7 +44,7 @@ export default async function BlogIndexPage() {
                         {subpages.map((subpage, index) => (
                             <li key={subpage.id}>
                                 <Link
-                                    className="group flex items-center justify-between rounded-3xl border border-white/10 bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.06]"
+                                    className="group flex items-center justify-between rounded-3xl border border-white/10 bg-white/3 px-5 py-4 transition hover:border-white/20 hover:bg-white/6"
                                     href={subpage.href}
                                 >
                                     <div className="min-w-0 pr-6">
