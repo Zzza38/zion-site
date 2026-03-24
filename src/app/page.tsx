@@ -80,7 +80,7 @@ export default function Home() {
             <main className="flex w-full flex-col items-center p-4 pt-8">
                 <h1 className="text-4xl font-bold">Zion Aronov (Zzza38)</h1>
                 <p className="text-m max-w-3/4 text-neutral-500">
-                    About me: I&apos;m a 13 year old software engineer from New York. I love to code and am a self-taught full-stack developer.
+                    I&apos;m a 13 year old software engineer from New York. I love to code and am a self-taught full-stack developer.
                 </p>
                 <br />
                 <h2 className="text-xl font-bold">Current Projects</h2>
