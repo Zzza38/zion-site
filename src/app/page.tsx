@@ -1,65 +1,199 @@
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+
+const projectGridClass =
+    "grid w-full grid-cols-1 gap-4 md:grid-cols-2";
+const sectionWidthClass =
+    "w-full xl:max-w-[66vw] 2xl:max-w-6xl";
+const navItems = [
+    { label: "Home", href: "/" },
+    { label: "Blog", href: "/blog" },
+];
+
+function isWideCard(index: number, total: number) {
+    return total % 2 === 1 && index === total - 1;
+}
 
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    const currentProjects = [
+        {
+            title: "Portfolio",
+            description: "This is my portfolio website (this one). It's built with Next.js and Tailwind CSS.",
+            image: "",
+            link: "https://github.com/Zzza38/zion-site",
+        },
+        {
+            title: "Nexra",
+            description: "An unfinished JavaScript compiler to Linux x86_64 Assembly.",
+            image: "",
+            link: "https://github.com/Zzza38/nexra",
+        },
+    ];
+
+    const contributions = [
+        {
+            title: "Interstellar",
+            description: "I added a Local Storage export feature, which would allow users to save their data locally and import it later.",
+            image: "",
+            link: "https://github.com/UseInterstellar/Interstellar",
+            prLink: "https://github.com/UseInterstellar/Interstellar/pull/1022",
+        },
+    ];
+
+    const pastProjects = [
+        {
+            title: "WebGFA",
+            description: "WebGFA is a games website that allows you to play games online. It's built with Fastify and TypeScript.",
+            image: "https://raw.githubusercontent.com/Zzza38/WebGFA/refs/heads/main/static/favicon.ico",
+            link: "https://github.com/Zzza38/WebGFA",
+        },
+        {
+            title: "Wordwall Hack",
+            description: "A leaderboard hack for Wordwall, developed using ChatGPT when I wanted to be first in a Wordwall.",
+            image: "",
+            link: "https://github.com/Zzza38/wordwallHack",
+        },
+        {
+            title: "Dead Rails Script",
+            description: "An exploit script that I developed for the Roblox game Dead Rails.",
+            image: "",
+            link: "https://github.com/Zzza38/dead-rails-script",
+        },
+    ];
+
+    return (
+        <div id="top" className="flex min-h-screen w-full flex-col items-center text-center">
+            <header className="sticky top-0 z-20 w-full border-b border-white/10 bg-background/85 backdrop-blur">
+                <nav className={`mx-auto flex min-h-14 w-full items-center justify-center gap-8 px-4 md:gap-12 ${sectionWidthClass}`}>
+                    {navItems.map((item) => (
+                        <a
+                            key={item.label}
+                            href={item.href}
+                            className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+                        >
+                            {item.label}
+                        </a>
+                    ))}
+                </nav>
+            </header>
+            <main className="flex w-full flex-col items-center p-4 pt-8">
+                <h1 className="text-4xl font-bold">Zion Aronov (Zzza38)</h1>
+                <p className="text-m max-w-3/4 text-neutral-500">
+                    About me: I&apos;m a 13 year old software engineer from New York. I love to code and am a self-taught full-stack developer.
+                </p>
+                <br />
+                <h2 className="text-xl font-bold">Current Projects</h2>
+                <br />
+                <div id="currentProjects" className={`${sectionWidthClass} ${projectGridClass}`}>
+                    {currentProjects.map((project, index) => (
+                        <ProjectCard
+                            key={project.title}
+                            title={project.title}
+                            description={project.description}
+                            image={project.image}
+                            link={project.link}
+                            wide={isWideCard(index, currentProjects.length)}
+                            className={isWideCard(index, currentProjects.length) ? "md:col-span-2" : ""}
+                        />
+                    ))}
+                </div>
+                <br />
+                <h2 className="text-xl font-bold">Contributions</h2>
+                <br />
+                <div id="contributions" className={`${sectionWidthClass} ${projectGridClass}`}>
+                    {contributions.map((contribution, index) => (
+                        <ContributionCard
+                            key={contribution.title}
+                            title={contribution.title}
+                            description={contribution.description}
+                            image={contribution.image}
+                            link={contribution.link}
+                            prLink={contribution.prLink}
+                            wide={isWideCard(index, contributions.length)}
+                            className={isWideCard(index, contributions.length) ? "md:col-span-2" : ""}
+                        />
+                    ))}
+                </div>
+                <br />
+                <h2 className="text-xl font-bold">Past Projects</h2>
+                <br />
+                <div id="pastProjects" className={`${sectionWidthClass} ${projectGridClass}`}>
+                    {pastProjects.map((project, index) => (
+                        <ProjectCard
+                            key={project.title}
+                            title={project.title}
+                            description={project.description}
+                            image={project.image}
+                            link={project.link}
+                            wide={isWideCard(index, pastProjects.length)}
+                            className={isWideCard(index, pastProjects.length) ? "md:col-span-2" : ""}
+                        />
+                    ))}
+                </div>
+                <br />
+                <h1 className="text-2xl font-bold">Contact Me</h1>
+                <br />
+                <div className="text-m flex max-w-3/4 flex-col text-neutral-500">
+                    <p>Email: <a href="mailto:zwatch3@gmail.com" className="text-blue-500">zwatch3@gmail.com</a></p>
+                    <p>GitHub: <a href="https://github.com/Zzza38" className="text-blue-500">Zzza38</a></p>
+                    <p>Discord: <a href="https://discord.com/users/786069811855491072" className="text-blue-500">@simhosha_pro1</a></p>
+                </div>
+            </main>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    );
+}
+
+function ProjectCard({ title, description, image, link, className = "", wide = false }: { title: string, description: string, image: string, link: string, className?: string, wide?: boolean }) {
+    return (
+        <Card className={`${className} w-full p-4 
+        transition ease-in-out duration-250 
+        border-2 border-transparent
+        hover:border-blue-500 ${wide ? "hover:scale-[1.02]" : "hover:scale-105"}`}>
+            <div className="flex flex-1 flex-col items-center justify-center gap-1">
+                <div className="flex flex-row items-center gap-3">
+                    {image && (
+                        <Image src={image} alt={`${title} icon`} width={32} height={32} className="h-8 w-8 rounded object-cover" />
+                    )}
+                    <h1 className="text-2xl font-bold">{title}</h1>
+                    {image && (
+                        <span aria-hidden className="h-8 w-8 shrink-0" />
+                    )}
+                </div>
+                <p className="text-medium">{description}</p>
+            </div>
+            <Button asChild>
+                    <a href={link} target="_blank" rel="noreferrer">View Project</a>
+            </Button>
+        </Card>
+    );
+}
+function ContributionCard({ title, description, image, link, prLink, className = "", wide = false }: { title: string, description: string, image: string, link: string, prLink: string, className?: string, wide?: boolean }) {
+    return (
+        <Card className={`${className} w-full p-4 
+        transition ease-in-out duration-250 
+        border-2 border-transparent
+        hover:border-blue-500 ${wide ? "hover:scale-[1.02]" : "hover:scale-105"}`}>
+            <div className="flex flex-1 flex-col items-center justify-center gap-1">
+                <div className="flex flex-row items-center gap-3">
+                    {image && (
+                        <Image src={image} alt={`${title} icon`} width={32} height={32} className="h-8 w-8 rounded object-cover" />
+                    )}
+                    <h1 className="text-2xl font-bold">{title}</h1>
+                    {image && (
+                        <span aria-hidden className="h-8 w-8 shrink-0" />
+                    )}
+                </div>
+                <p className="text-medium">{description}</p>
+            </div>
+            <div className="mt-4 flex w-full flex-col gap-2 md:flex-row">
+                <Button asChild className="w-full md:w-1/2">
+                    <a href={link} target="_blank" rel="noreferrer" className="w-full flex justify-center">View Project</a>
+                </Button>
+                <Button asChild className="w-full md:w-1/2">
+                    <a href={prLink} target="_blank" rel="noreferrer" className="w-full flex justify-center">View Pull Request</a>
+                </Button>
+            </div>
+        </Card>
+    );
 }
