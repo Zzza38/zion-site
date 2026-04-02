@@ -135,7 +135,7 @@ export default function Home() {
                 <h1 className="text-2xl font-bold">Contact Me</h1>
                 <br />
                 <div className="text-m flex max-w-3/4 flex-col text-neutral-500">
-                    <p>Email: <a href="mailto:zwatch3@gmail.com" className="text-blue-500">zwatch3@gmail.com</a></p>
+                    <p>Email: <a href="mailto:zion@ziona.dev" className="text-blue-500">zion@ziona.dev</a></p>
                     <p>GitHub: <a href="https://github.com/Zzza38" className="text-blue-500">Zzza38</a></p>
                     <p>Discord: <a href="https://discord.com/users/786069811855491072" className="text-blue-500">@simhosha_pro1</a></p>
                 </div>
