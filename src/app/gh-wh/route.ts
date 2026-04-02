@@ -67,29 +67,21 @@ export async function POST(request: Request) {
     return new Response(null, { status: 401 });
   }
 
-  try {
-    const { stdout, stderr } = await execAsync(command, {
-      timeout: 300_000,
-      maxBuffer: 10 * 1024 * 1024,
-      env: process.env,
+  // GitHub drops the connection if no 2xx within ~10s.
+  void execAsync(command, {
+    timeout: 300_000,
+    maxBuffer: 10 * 1024 * 1024,
+    env: process.env,
+  })
+    .then(({ stderr }) => {
+      if (stderr) console.error("[gh-wh] stderr:", stderr);
+    })
+    .catch((err: unknown) => {
+      const e = err as { message?: string; stderr?: string; stdout?: string };
+      console.error("[gh-wh] command failed:", e.message ?? err);
+      if (e.stderr) console.error("[gh-wh] stderr:", e.stderr);
+      if (e.stdout) console.error("[gh-wh] stdout:", e.stdout);
     });
-    return Response.json({ ok: true, stdout, stderr });
-  } catch (err: unknown) {
-    const e = err as {
-      message?: string;
-      stdout?: string;
-      stderr?: string;
-      code?: string | number | null;
-    };
-    return Response.json(
-      {
-        ok: false,
-        error: e.message ?? "Command failed",
-        code: e.code,
-        stdout: e.stdout,
-        stderr: e.stderr,
-      },
-      { status: 500 },
-    );
-  }
+
+  return Response.json({ ok: true, accepted: true }, { status: 202 });
 }
