@@ -47,19 +47,7 @@ export default function Home() {
             description: "WebGFA is a games website that allows you to play games online. It's built with Fastify and TypeScript.",
             image: "https://raw.githubusercontent.com/Zzza38/WebGFA/refs/heads/main/static/favicon.ico",
             link: "https://github.com/Zzza38/WebGFA",
-        },
-        {
-            title: "Wordwall Hack",
-            description: "A leaderboard hack for Wordwall, developed using ChatGPT when I wanted to be first in a Wordwall.",
-            image: "",
-            link: "https://github.com/Zzza38/wordwallHack",
-        },
-        {
-            title: "Dead Rails Script",
-            description: "An exploit script that I developed for the Roblox game Dead Rails.",
-            image: "",
-            link: "https://github.com/Zzza38/dead-rails-script",
-        },
+        }
     ];
 
     return (
