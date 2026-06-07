@@ -24,20 +24,27 @@ export default function Home() {
             link: "https://github.com/Zzza38/zion-site",
         },
         {
-            title: "Nexra",
-            description: "An unfinished JavaScript compiler to Linux x86_64 Assembly.",
-            image: "",
-            link: "https://github.com/Zzza38/nexra",
-        },
+            title: "Sat Tracker",
+            description: "A modern satellite tracking program.",
+            image: "https://raw.githubusercontent.com/Zzza38/sat-tracker/refs/heads/master/public/sat-tracker-icon.svg",
+            link: "https://github.com/Zzza38/sat-tracker"
+        }
     ];
 
     const contributions = [
         {
-            title: "Interstellar",
+            title: "Interstellar Save Data",
             description: "I added a Local Storage export feature, which would allow users to save their data locally and import it later.",
             image: "",
             link: "https://github.com/UseInterstellar/Interstellar",
             prLink: "https://github.com/UseInterstellar/Interstellar/pull/1022",
+        },
+        {
+            title: "Interstellar Scramjet",
+            description: "I added a new, high performance proxy called Scramjet, which replaces the old, outdated UV proxy.",
+            image: "",
+            link: "https://github.com/UseInterstellar/Interstellar",
+            prLink: "https://github.com/UseInterstellar/Interstellar/pull/1194",
         },
     ];
 

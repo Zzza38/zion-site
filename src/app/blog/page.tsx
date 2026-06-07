@@ -49,7 +49,7 @@ export default async function BlogIndexPage() {
                                 >
                                     <div className="min-w-0 pr-6">
                                         <p className="text-xs uppercase tracking-[0.28em] text-neutral-500">
-                                            Post {String(index + 1).padStart(2, "0")}
+                                            Post {String(subpages.length - index).padStart(2, "0")}
                                         </p>
                                         <h3 className="mt-2 truncate text-lg font-medium text-neutral-100">
                                             {subpage.title}
