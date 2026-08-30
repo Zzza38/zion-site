@@ -16,18 +16,30 @@ function isWideCard(index: number, total: number) {
 }
 
 export default function Home() {
-    const currentProjects = [
+    const projects = [
         {
             title: "Portfolio",
-            description: "This is my portfolio website (this one). It's built with Next.js and Tailwind CSS.",
+            description: "This portfolio website, built with Next.js, React, and Typescript.",
             image: "",
             link: "https://github.com/Zzza38/zion-site",
         },
         {
             title: "Sat Tracker",
-            description: "A modern satellite tracking program.",
+            description: "A modern satellite tracking program built with Electron, React, Vite, and Typescript.",
             image: "https://raw.githubusercontent.com/Zzza38/sat-tracker/refs/heads/master/public/sat-tracker-icon.svg",
             link: "https://github.com/Zzza38/sat-tracker"
+        },
+        {
+            title: "WebGFA",
+            description: "WebGFA is a games website that allows you to play games online. It's built with Fastify and TypeScript.",
+            image: "https://raw.githubusercontent.com/Zzza38/WebGFA/refs/heads/main/static/favicon.ico",
+            link: "https://github.com/Zzza38/WebGFA",
+        },
+        {
+            title: "Flux",
+            description: "Flux is another completely necessary Chromium fork. It's built on C++..? I think",
+            image: "",
+            link: "https://github.com/Zzza38/flux-browser"
         }
     ];
 
@@ -48,15 +60,6 @@ export default function Home() {
         },
     ];
 
-    const pastProjects = [
-        {
-            title: "WebGFA",
-            description: "WebGFA is a games website that allows you to play games online. It's built with Fastify and TypeScript.",
-            image: "https://raw.githubusercontent.com/Zzza38/WebGFA/refs/heads/main/static/favicon.ico",
-            link: "https://github.com/Zzza38/WebGFA",
-        }
-    ];
-
     return (
         <div id="top" className="flex min-h-screen w-full flex-col items-center text-center">
             <header className="sticky top-0 z-20 w-full border-b border-white/10 bg-background/85 backdrop-blur">
@@ -75,21 +78,21 @@ export default function Home() {
             <main className="flex w-full flex-col items-center p-4 pt-8">
                 <h1 className="text-4xl font-bold">Zion Aronov (Zzza38)</h1>
                 <p className="text-m max-w-3/4 text-neutral-500">
-                    I&apos;m a 13 year old full stack software engineer from New York.
+                    I&apos;m a 13 year old software engineer from New York. I love to code and am a self-taught full-stack developer.
                 </p>
                 <br />
-                <h2 className="text-xl font-bold">Current Projects</h2>
+                <h2 className="text-xl font-bold">Projects</h2>
                 <br />
-                <div id="currentProjects" className={`${sectionWidthClass} ${projectGridClass}`}>
-                    {currentProjects.map((project, index) => (
+                <div id="projects" className={`${sectionWidthClass} ${projectGridClass}`}>
+                    {projects.map((project, index) => (
                         <ProjectCard
                             key={project.title}
                             title={project.title}
                             description={project.description}
                             image={project.image}
                             link={project.link}
-                            wide={isWideCard(index, currentProjects.length)}
-                            className={isWideCard(index, currentProjects.length) ? "md:col-span-2" : ""}
+                            wide={isWideCard(index, projects.length)}
+                            className={isWideCard(index, projects.length) ? "md:col-span-2" : ""}
                         />
                     ))}
                 </div>
@@ -107,22 +110,6 @@ export default function Home() {
                             prLink={contribution.prLink}
                             wide={isWideCard(index, contributions.length)}
                             className={isWideCard(index, contributions.length) ? "md:col-span-2" : ""}
-                        />
-                    ))}
-                </div>
-                <br />
-                <h2 className="text-xl font-bold">Past Projects</h2>
-                <br />
-                <div id="pastProjects" className={`${sectionWidthClass} ${projectGridClass}`}>
-                    {pastProjects.map((project, index) => (
-                        <ProjectCard
-                            key={project.title}
-                            title={project.title}
-                            description={project.description}
-                            image={project.image}
-                            link={project.link}
-                            wide={isWideCard(index, pastProjects.length)}
-                            className={isWideCard(index, pastProjects.length) ? "md:col-span-2" : ""}
                         />
                     ))}
                 </div>
