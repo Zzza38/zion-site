@@ -38,7 +38,7 @@ export default function Home() {
         {
             title: "Flux",
             description: "Flux is another completely necessary Chromium fork. It's built on C++..? I think",
-            image: "",
+            image: "https://raw.githubusercontent.com/Zzza38/flux-browser/refs/heads/main/chrome/app/theme/chromium/product_logo.svg",
             link: "https://github.com/Zzza38/flux-browser"
         }
     ];
