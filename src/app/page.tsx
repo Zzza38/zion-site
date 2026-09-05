@@ -120,7 +120,7 @@ export default function Home() {
                     <p>Email: <a href="mailto:zion@ziona.dev" className="text-blue-500">zion@ziona.dev</a></p>
                     <p>GitHub: <a href="https://github.com/Zzza38" className="text-blue-500">Zzza38</a></p>
                     <p>Discord: <a href="https://discord.com/users/786069811855491072" className="text-blue-500">@simhosha_pro1</a></p>
-                    <p>X: <a href="https://x.com/TheZionAronov" className="text-blue-500">@TheZionAronov</a> - Currently banned for "impersonating" myself. They won't even get a human to review my case.</p>
+                    <p>X: <a href="https://x.com/TheZionAronov" className="text-blue-500">@TheZionAronov</a> - Currently banned for &quot;impersonating&quot; myself. They won&apos;t even get a human to review my case.</p>
                 </div>
             </main>
         </div>
