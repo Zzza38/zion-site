@@ -20,8 +20,14 @@ export default function Home() {
         {
             title: "Portfolio",
             description: "This portfolio website, built with Next.js, React, and Typescript.",
-            image: "",
+            image: "/logo.svg",
             link: "https://github.com/Zzza38/zion-site",
+        },
+        {
+            title: "Quasar",
+            description: "Quasar is a phone-first school schedule and task tracker. It's built with Next.js, tRPC, SQLite, and IndexedDB, with offline sync and Google sign-in.",
+            image: "/quasar.svg",
+            link: "https://github.com/Zzza38/quasar",
         },
         {
             title: "Sat Tracker",
@@ -120,7 +126,7 @@ export default function Home() {
                     <p>Email: <a href="mailto:zion@ziona.dev" className="text-blue-500">zion@ziona.dev</a></p>
                     <p>GitHub: <a href="https://github.com/Zzza38" className="text-blue-500">Zzza38</a></p>
                     <p>Discord: <a href="https://discord.com/users/786069811855491072" className="text-blue-500">@simhosha_pro1</a></p>
-                    <p>X: <a href="https://x.com/TheZionAronov" className="text-blue-500">@TheZionAronov</a> - Currently banned for &quot;impersonating&quot; myself. They won&apos;t even get a human to review my case.</p>
+                    <p>X: <a href="https://x.com/TheZionAronov" className="text-blue-500">@TheZionAronov</a> - Banned for no given reason. They won&apos;t even get a human to review my case.</p>
                 </div>
             </main>
         </div>

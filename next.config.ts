@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "raw.githubusercontent.com",
-        pathname: "/Zzza38/WebGFA/**",
+        pathname: "/Zzza38/**",
       },
     ],
   },

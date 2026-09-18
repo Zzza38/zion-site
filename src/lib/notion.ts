@@ -51,6 +51,10 @@ function normalizePageId(input: string) {
     return pageId;
 }
 
+export function isValidNotionId(input: string) {
+    return extractPageId(input) !== null;
+}
+
 export function getRichTextPlainText(richText: RichTextItemResponse[] = []) {
     return richText.map((segment) => segment.plain_text).join("");
 }
@@ -180,6 +184,89 @@ export const getBlogPostData = cache(async (pageIdOrUrl: string) => {
         blocks,
     };
 });
+
+type NotionMediaFile =
+    | {
+          type: "external";
+          external: {
+              url: string;
+          };
+      }
+    | {
+          type: "file";
+          file: {
+              url: string;
+          };
+      };
+
+export function getNotionMediaFile(
+    block: BlockObjectResponse,
+): NotionMediaFile | undefined {
+    switch (block.type) {
+        case "image":
+            return block.image;
+        case "video":
+            return block.video;
+        case "audio":
+            return block.audio;
+        case "pdf":
+            return block.pdf;
+        case "file":
+            return block.file;
+        default:
+            return undefined;
+    }
+}
+
+/**
+ * Returns a URL that can safely be embedded in cached HTML. External files are
+ * linked directly; Notion-hosted files go through `/notion-file/[blockId]`,
+ * which resolves a fresh signed URL on each request because Notion's signed
+ * URLs expire after about an hour.
+ */
+export function getNotionMediaHref(block: BlockObjectResponse) {
+    const file = getNotionMediaFile(block);
+
+    if (!file) {
+        return null;
+    }
+
+    if (file.type === "external") {
+        return file.external.url;
+    }
+
+    return `/notion-file/${block.id}`;
+}
+
+const getCachedNotionFileUrl = unstable_cache(
+    async (blockId: string) => {
+        assertNotionConfig();
+
+        const block = await notion.blocks.retrieve({ block_id: blockId });
+
+        if (!isFullBlock(block)) {
+            return null;
+        }
+
+        const file = getNotionMediaFile(block);
+
+        if (!file) {
+            return null;
+        }
+
+        return file.type === "external" ? file.external.url : file.file.url;
+    },
+    ["notion-file-url"],
+    {
+        // Notion signed URLs last ~1 hour; keep well under that.
+        revalidate: 900,
+        tags: ["blog"],
+    },
+);
+
+export async function getNotionFileUrl(blockIdOrUrl: string) {
+    return getCachedNotionFileUrl(normalizePageId(blockIdOrUrl));
+}
 
 export function isNotionObjectNotFound(error: unknown) {
     return (

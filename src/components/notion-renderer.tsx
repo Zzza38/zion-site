@@ -6,6 +6,7 @@ import type {
 import { cn } from "@/lib/utils";
 import {
     getBlogPostHref,
+    getNotionMediaHref,
     getRichTextPlainText,
     type NotionBlockNode,
 } from "@/lib/notion";
@@ -14,20 +15,6 @@ type NotionRendererProps = {
     blocks: NotionBlockNode[];
     className?: string;
 };
-
-type NotionMediaFile =
-    | {
-          type: "external";
-          external: {
-              url: string;
-          };
-      }
-    | {
-          type: "file";
-          file: {
-              url: string;
-          };
-      };
 
 function getColorClasses(color: RichTextItemResponse["annotations"]["color"]) {
     switch (color) {
@@ -116,37 +103,6 @@ function getBlockRichText(block: BlockObjectResponse) {
             return block.code.rich_text;
         default:
             return [];
-    }
-}
-
-function getFileUrl(file: NotionMediaFile | undefined) {
-    if (!file) {
-        return null;
-    }
-
-    if (file.type === "external") {
-        return file.external.url;
-    }
-
-    return file.file.url;
-}
-
-function getMediaValue(
-    block: BlockObjectResponse,
-): NotionMediaFile | undefined {
-    switch (block.type) {
-        case "image":
-            return block.image;
-        case "video":
-            return block.video;
-        case "audio":
-            return block.audio;
-        case "pdf":
-            return block.pdf;
-        case "file":
-            return block.file;
-        default:
-            return undefined;
     }
 }
 
@@ -345,7 +301,7 @@ function renderBlock(node: NotionBlockNode) {
             );
 
         case "image": {
-            const imageUrl = getFileUrl(getMediaValue(block));
+            const imageUrl = getNotionMediaHref(block);
 
             if (!imageUrl) {
                 return null;
@@ -372,7 +328,7 @@ function renderBlock(node: NotionBlockNode) {
         case "audio":
         case "pdf":
         case "file": {
-            const fileUrl = getFileUrl(getMediaValue(block));
+            const fileUrl = getNotionMediaHref(block);
 
             if (!fileUrl) {
                 return null;
