@@ -312,7 +312,7 @@ function renderBlock(node: NotionBlockNode) {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         alt={getRichTextPlainText(block.image.caption) || "Notion image"}
-                        className="w-full rounded-2xl border border-white/10"
+                        className="mx-auto h-auto max-w-full rounded-2xl border border-white/10"
                         src={imageUrl}
                     />
                     {block.image.caption.length > 0 ? (
