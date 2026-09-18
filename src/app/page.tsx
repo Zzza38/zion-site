@@ -26,7 +26,7 @@ export default function Home() {
         {
             title: "Quasar",
             description: "Quasar is a phone-first school schedule and task tracker. It's built with Next.js, tRPC, SQLite, and IndexedDB, with offline sync and Google sign-in.",
-            image: "/quasar.svg",
+            image: "https://raw.githubusercontent.com/Zzza38/quasar/refs/heads/master/src/app/icon.svg",
             link: "https://github.com/Zzza38/quasar",
         },
         {
