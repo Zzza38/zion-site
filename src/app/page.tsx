@@ -25,15 +25,17 @@ export default function Home() {
         },
         {
             title: "Quasar",
-            description: "Quasar is a phone-first school schedule and task tracker. It's built with Next.js, tRPC, SQLite, and IndexedDB, with offline sync and Google sign-in.",
+            description: "Quasar is a scheduling app that helps students track their school schedule, tasks, and friends. It's built with Next.js and TypeScript.",
             image: "https://raw.githubusercontent.com/Zzza38/quasar/refs/heads/master/src/app/icon.svg",
             link: "https://github.com/Zzza38/quasar",
+            siteLink: "https://getquasarapp.com",
         },
         {
             title: "Sat Tracker",
             description: "A modern satellite tracking program built with Electron, React, Vite, and Typescript.",
             image: "https://raw.githubusercontent.com/Zzza38/sat-tracker/refs/heads/master/public/sat-tracker-icon.svg",
-            link: "https://github.com/Zzza38/sat-tracker"
+            link: "https://github.com/Zzza38/sat-tracker",
+            siteLink: "https://sat-tracker.ziona.dev",
         },
         {
             title: "WebGFA",
@@ -43,7 +45,7 @@ export default function Home() {
         },
         {
             title: "Flux",
-            description: "Flux is another completely necessary Chromium fork. It's built on C++..? I think",
+            description: "Flux is another completely necessary Chromium fork.",
             image: "https://raw.githubusercontent.com/Zzza38/flux-browser/refs/heads/main/chrome/app/theme/chromium/product_logo.svg",
             link: "https://github.com/Zzza38/flux-browser"
         }
@@ -97,6 +99,7 @@ export default function Home() {
                             description={project.description}
                             image={project.image}
                             link={project.link}
+                            siteLink={project.siteLink}
                             wide={isWideCard(index, projects.length)}
                             className={isWideCard(index, projects.length) ? "md:col-span-2" : ""}
                         />
@@ -133,7 +136,7 @@ export default function Home() {
     );
 }
 
-function ProjectCard({ title, description, image, link, className = "", wide = false }: { title: string, description: string, image: string, link: string, className?: string, wide?: boolean }) {
+function ProjectCard({ title, description, image, link, siteLink, className = "", wide = false }: { title: string, description: string, image: string, link: string, siteLink?: string, className?: string, wide?: boolean }) {
     return (
         <Card className={`${className} w-full p-4 
         transition ease-in-out duration-250 
@@ -151,9 +154,20 @@ function ProjectCard({ title, description, image, link, className = "", wide = f
                 </div>
                 <p className="text-medium">{description}</p>
             </div>
-            <Button asChild>
+            {siteLink ? (
+                <div className="mt-4 flex w-full flex-col gap-2 md:flex-row">
+                    <Button asChild className="w-full md:w-1/2">
+                        <a href={siteLink} target="_blank" rel="noreferrer" className="w-full flex justify-center">Visit Site</a>
+                    </Button>
+                    <Button asChild className="w-full md:w-1/2">
+                        <a href={link} target="_blank" rel="noreferrer" className="w-full flex justify-center">View Source</a>
+                    </Button>
+                </div>
+            ) : (
+                <Button asChild>
                     <a href={link} target="_blank" rel="noreferrer">View Project</a>
-            </Button>
+                </Button>
+            )}
         </Card>
     );
 }
