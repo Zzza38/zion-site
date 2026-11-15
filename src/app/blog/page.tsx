@@ -1,9 +1,15 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { NotionRenderer } from "@/components/notion-renderer";
 import { RelativeTime } from "@/components/relative-time";
 import { getBlogIndexData, getPageTitle } from "@/lib/notion";
 
 export const revalidate = 600;
+
+export const metadata: Metadata = {
+    title: "Blog | Zion Aronov",
+    alternates: { canonical: "/blog" },
+};
 
 export default async function BlogIndexPage() {
     const { page, contentBlocks, subpages } = await getBlogIndexData();

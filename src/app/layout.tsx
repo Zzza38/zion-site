@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
+import { siteUrl } from "@/lib/site";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -15,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Zion A's Portfolio",
   description: "The developer portfolio of Zion Aronov",
 };
@@ -38,7 +40,6 @@ export default function RootLayout({
     >
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <title>Zion Aronov&apos;s Portfolio</title>
       </head>
       <body className="min-h-full flex flex-col">
         {children}
