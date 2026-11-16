@@ -35,6 +35,7 @@ export async function generateMetadata(
 
         return {
             title: getPageTitle(post.page),
+            alternates: { canonical: post.summary.href },
         };
     } catch {
         return {

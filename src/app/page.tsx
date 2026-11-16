@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+
+export const metadata: Metadata = {
+    alternates: { canonical: "/" },
+};
 
 const projectGridClass =
     "grid w-full grid-cols-1 gap-4 md:grid-cols-2";
